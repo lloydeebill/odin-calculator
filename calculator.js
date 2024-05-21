@@ -1,30 +1,76 @@
 
 
-let firstNum = 4;
-let secondNum = 2;
-let operator = "÷";
+
+let firstNumber;
+let secondNumber;
+let operator;
+
+const displayCalc = document.querySelector(".calcu-display")
+
+displayCalc.innerText = ''
+
+
+const numButtons = document.querySelectorAll(".number")
+
+numButtons.forEach(button => {
+  button.addEventListener('click', () => {
+
+    if (!operator) {
+      displayCalc.innerText += button.innerText;
+
+      firstNumber = displayCalc.innerText;
+      
+      console.log(`first num: ${firstNumber}`);
+    } else {
+      displayCalc.innerText += button.innerText;
+
+      secondNumber = displayCalc.innerText;
+      
+      console.log(`second num: ${secondNumber}`);
+    }
+    
+  })
+})
+
+
+
+
+const operationButtons = document.querySelectorAll(".operation");
+operationButtons.forEach(button => {
+  button.addEventListener('click',() => {
+    
+
+    operator = button.innerText;
+
+    displayCalc.innerText = '';
+
+    console.log(operator);
+
+    
+  })
+})
+
+
+
+
 
 
 const equalButton = document.querySelector(".equal");
 
-equalButton.addEventListener('click', () => operate(firstNum,secondNum,operator));
+equalButton.addEventListener('click', () => operate(firstNumber,secondNumber,operator));
 
 function operate(firstNum,secondNum,operator) {
 
 
   switch (operator) {
     case "+":
-      console.log(add(firstNum,secondNum));
-      break;
+      return displayCalc.innerText = add(firstNum,secondNum);
     case "-":
-      console.log(subtract(firstNum,secondNum));
-      break;
+      return displayCalc.innerText = subtract(firstNum,secondNum);
     case "x":
-      console.log(multiply(firstNum,secondNum));
-      break;
+      return displayCalc.innerText = multiply(firstNum,secondNum);
     case "÷":
-      console.log(divide(firstNum,secondNum));
-      break;
+      return displayCalc.innerText = divide(firstNum,secondNum);
   }
 
 
@@ -35,11 +81,17 @@ function operate(firstNum,secondNum,operator) {
 
 function add(a,b) {
 
+  a = parseInt(a);
+  b = parseInt(b);
+
   return a + b;
 
 }
 
 function subtract(a,b) {
+
+  a = parseInt(a);
+  b = parseInt(b);
 
   return a - b;
 
@@ -47,11 +99,17 @@ function subtract(a,b) {
 
 function multiply(a,b) {
 
+  a = parseInt(a);
+  b = parseInt(b);
+
   return a * b;
 
 }
 
 function divide(a,b) {
+
+  a = parseInt(a);
+  b = parseInt(b);
 
   return a / b;
 
