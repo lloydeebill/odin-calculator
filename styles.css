@@ -28,20 +28,60 @@ body {
 .calcu-buttons-container {
   border: 1px solid black;
   height: 500px;
-  padding: 5px;
+  padding: 10px;
   margin: 10px;
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
-  align-items: center;
-  
 }
+
+.first-set-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  width: 380px;
+  margin: 0px;
+  justify-content: space-evenly;
+}
+
+.second-set-buttons {
+  width: 95px;
+
+  margin-left: 0px;
+  margin-right: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+}
+
+.second-calcu-buttons {
+  border: 1px solid pink;
+  width: 95px;
+  height: 30px;
+}
+
+.second-calcu-buttons.above {
+  border: 1px solid red;
+  width: 95px;
+  height: 90px;
+  border-radius: 10px;
+
+}
+
+.second-calcu-buttons.below {
+  border: 1px solid green;
+  width: 95px;
+  height: 396px;
+  margin-bottom: 0.5px;
+  border-radius: 10px;
+
+}
+
 
 .calcu-buttons {
   border: 1px solid black;
-  border-radius: 50%;
-  margin: 0 10px;
-  width: 90px;
+  border-radius: 10px;
+  margin: 0px 10px 10px 10px;
+  width: 95px;
   height: 90px;
 
 
