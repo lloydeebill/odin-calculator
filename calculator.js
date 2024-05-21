@@ -4,6 +4,7 @@
 let firstNumber = '';
 let secondNumber = '';
 let operator = '';
+let result = '';
 
 const displayCalc = document.querySelector(".calcu-display")
 
@@ -17,11 +18,9 @@ numButtons.forEach(button => {
     if (!operator) {
       displayCalc.innerText += button.innerText;
       firstNumber = displayCalc.innerText;
-      console.log(`first num: ${firstNumber}`);
     } else {
       displayCalc.innerText += button.innerText;
       secondNumber = displayCalc.innerText; 
-      console.log(`second num: ${secondNumber}`);
     }
   })
 })
@@ -56,10 +55,7 @@ decimalButton.addEventListener('click', () => {
 
 const clearButton = document.querySelector(".clear");
 clearButton.addEventListener('click', () => {
-  displayCalc.innerText = '';
-  firstNumber = '';
-  secondNumber = '';
-  operator = '';
+  resetCalculator();
 })
 
 
@@ -67,24 +63,44 @@ const equalButton = document.querySelector(".equal");
 equalButton.addEventListener('click', () => operate(firstNumber,secondNumber,operator));
 
 function operate(firstNum,secondNum,operator) {
+
+
   switch (operator) {
     case "+":
-      return displayCalc.innerText = add(firstNum,secondNum);
+      add(firstNum,secondNum);
+      break;
     case "-":
-      return displayCalc.innerText = subtract(firstNum,secondNum);
+      subtract(firstNum,secondNum);
+      break;
     case "x":
-      return displayCalc.innerText = multiply(firstNum,secondNum);
+      multiply(firstNum,secondNum);
+      break;
     case "÷":
-      return displayCalc.innerText = divide(firstNum,secondNum);
+      divide(firstNum,secondNum);
+      break;
   }
+
+  displayCalc.innerText = result;
+  firstNumber = result;
+
 }
 
+
+function resetCalculator() {
+  displayCalc.innerText = ''
+  firstNumber = '';
+  secondNumber = '';
+  operator = '';
+  result = '';
+}
 
 
 function add(a,b) {
   a = parseFloat(a);
   b = parseFloat(b);
-  return a + b;
+
+  result = a + b;
+  return result;
 
 }
 
@@ -92,7 +108,9 @@ function subtract(a,b) {
 
   a = parseFloat(a);
   b = parseFloat(b);
-  return a - b;
+  result = a - b;
+  return result;
+
 
 }
 
@@ -100,15 +118,23 @@ function multiply(a,b) {
 
   a = parseFloat(a);
   b = parseFloat(b);
-  return a * b;
+  result = a * b;
+  return result;
+
 
 }
 
 function divide(a,b) {
   a = parseFloat(a);
   b = parseFloat(b);
-  return a / b;
 
+  if ( b == 0) {
+    result = "Error: Zero Division";
+
+  } else {
+    result = a / b;
+
+  }
+  return result;
 }
-
 
