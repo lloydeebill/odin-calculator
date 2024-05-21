@@ -31,7 +31,6 @@ operationButtons.forEach(button => {
   button.addEventListener('click',() => {
     operator = button.innerText;
     displayCalc.innerText = '';
-    console.log(operator);
   })
 })
 
