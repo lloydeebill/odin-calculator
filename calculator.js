@@ -4,6 +4,7 @@ let firstNumber = '';
 let secondNumber = '';
 let operator = '';
 let result = '';
+let calcState = false;
 
 const displayCalc = document.querySelector('.calcu-display');
 
@@ -12,13 +13,18 @@ displayCalc.innerText = '';
 const numButtons = document.querySelectorAll('.number');
 numButtons.forEach((button) => {
   button.addEventListener('click',() => {
-    if(!operator) {
-      displayCalc.innerText += button.innerText;
-      firstNumber = displayCalc.innerText
-    } else {
-      displayCalc.innerText += button.innerText;
-      secondNumber = displayCalc.innerText
-      result = '';
+    if(calcState) {
+      displayCalc.innerText = button.innerText;
+      firstNumber = displayCalc.innerText;
+      calcState = false;
+    } else { 
+      if(!operator) {
+        displayCalc.innerText += button.innerText;
+        firstNumber = displayCalc.innerText
+      } else {
+        displayCalc.innerText += button.innerText;
+        secondNumber = displayCalc.innerText
+      }
     }
   })
 })
@@ -27,7 +33,12 @@ const operationButtons = document.querySelectorAll('.operation');
 operationButtons.forEach((button) => {
   button.addEventListener('click', ()=> {
 
-    if(!firstNumber || firstNumber === 0) {
+    if (calcState) {
+      firstNumber = result;
+      calcState = false;
+    }
+
+    if(!firstNumber) {
       firstNumber = '0';
     }  
     operator = button.innerText;
@@ -38,6 +49,7 @@ operationButtons.forEach((button) => {
 const equalButton = document.querySelector('.equal')
 equalButton.addEventListener('click', () => {
   equal(firstNumber,secondNumber,operator)
+  calcState = true;
 });
 
 
@@ -48,6 +60,7 @@ clearButton.addEventListener('click',() => {
   operator = '';
   result = '';
   displayCalc.innerText = '';
+  calcState = false;
 })
 
 const decimalButton = document.querySelector('.decimal') 
@@ -57,6 +70,7 @@ decimalButton.addEventListener('click', () => {
     if (!firstNumber.includes(".")){
       displayCalc.innerText += decimalButton.innerText;
       firstNumber = displayCalc.innerText;
+      calcState = false;
     }   
   } else {
     if (!secondNumber.includes(".")){
@@ -90,7 +104,7 @@ function equal(firstNum,secondNum,operator) {
   } 
 
   displayCalc.innerText = result;
-  firstNumber = result.toString();
+  firstNumber = result
   secondNumber = '';
   operator = '';
 }
@@ -99,7 +113,7 @@ function equal(firstNum,secondNum,operator) {
 function add(a,b) {
   a = parseFloat(a);
   b = parseFloat(b);
-  result = a + b;
+  result = (a + b)
 
   return result;
 }
@@ -107,7 +121,7 @@ function add(a,b) {
 function subtract(a,b) {
   a = parseFloat(a);
   b = parseFloat(b);
-  result = a - b;
+  result = (a - b)
   
   return result;
 }
@@ -116,7 +130,7 @@ function subtract(a,b) {
 function multiply(a,b) {
   a = parseFloat(a);
   b = parseFloat(b);
-  result = a * b;
+  result = (a * b).toFixed(2);
   
   return result;
 }
@@ -131,7 +145,7 @@ function divide(a,b) {
     result = "Error: Zero Division";
   }
   else {
-    result = a / b;
+    result = (a / b)
     
   }
 
