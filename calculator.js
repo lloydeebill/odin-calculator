@@ -1,30 +1,61 @@
 
 
-let display = document.querySelector(".calcu-display");
+let firstNum = 4;
+let secondNum = 2;
+let operator = "÷";
 
-display.innerText = ``;
 
-const numberButtons = document.querySelectorAll(".number");
-numberButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    display.innerText += button.innerText;
-  });
-});
+const equalButton = document.querySelector(".equal");
 
-const operationButtons = document.querySelectorAll(".operation");
-operationButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    display.innerText += button.innerText;
-  })
-})
+equalButton.addEventListener('click', () => operate(firstNum,secondNum,operator));
 
-const clearButton = document.querySelector(".reset");
-clearButton.addEventListener('click', () => {
+function operate(firstNum,secondNum,operator) {
 
-  display.innerText = '';
 
-})
+  switch (operator) {
+    case "+":
+      console.log(add(firstNum,secondNum));
+      break;
+    case "-":
+      console.log(subtract(firstNum,secondNum));
+      break;
+    case "x":
+      console.log(multiply(firstNum,secondNum));
+      break;
+    case "÷":
+      console.log(divide(firstNum,secondNum));
+      break;
+  }
 
+
+
+}
+
+
+
+function add(a,b) {
+
+  return a + b;
+
+}
+
+function subtract(a,b) {
+
+  return a - b;
+
+}
+
+function multiply(a,b) {
+
+  return a * b;
+
+}
+
+function divide(a,b) {
+
+  return a / b;
+
+}
 
 
 
