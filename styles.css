@@ -42,9 +42,21 @@ body {
   justify-content: space-evenly;
 }
 
+.first-calcu-buttons {
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 0px 10px 10px 10px;
+  width: 95px;
+  height: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+
+}
+
 .second-set-buttons {
   width: 95px;
-
   margin-left: 0px;
   margin-right: 10px;
   display: flex;
@@ -54,9 +66,11 @@ body {
 }
 
 .second-calcu-buttons {
-  border: 1px solid pink;
-  width: 95px;
-  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+
 }
 
 .second-calcu-buttons.above {
@@ -74,16 +88,9 @@ body {
   margin-bottom: 0.5px;
   border-radius: 10px;
 
-}
-
-
-.calcu-buttons {
-  border: 1px solid black;
-  border-radius: 10px;
-  margin: 0px 10px 10px 10px;
-  width: 95px;
-  height: 90px;
-
 
 }
+
+
+
 
