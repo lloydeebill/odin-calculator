@@ -5,6 +5,7 @@ body {
   display: flex;
   justify-content: center;
   align-items:center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 
@@ -24,7 +25,7 @@ body {
   height: 100px;
   padding: 20px;
   margin: 30px 25px 0px 25px;
-  font-size: 70px;
+  font-size: 55px;
   display: flex;
   justify-content: end;
   align-items: center;
@@ -100,26 +101,29 @@ body {
   border-radius: 10px;
 }
 
-.operation {
+.operation-color {
   background-color: #bb91c1;
 
 }
 
-.number {
+.number-color {
   background-color: #816ba5;
 }
 
-.clear {
+.clear-color {
   background-color: #4a55a5;
 }
 
-.decimal {
+.decimal-color {
   background-color: #4a55a5;
 }
 
-.equal {
+.equal-color {
   background-color: #318c6a;
 }
 
-
+.button-triggered {
+  background-color: black;
+  color: white;
+}
 

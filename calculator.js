@@ -5,20 +5,33 @@ let secondNumber = '';
 let operator = '';
 let result = '';
 let calcState = false;
+let buttonPressed = false;
 
 const displayCalc = document.querySelector('.calcu-display');
 
 displayCalc.innerText = '';
 
-const numButtons = document.querySelectorAll('.number');
+const numButtons = document.querySelectorAll('.js-number');
 numButtons.forEach((button) => {
   button.addEventListener('click',() => {
+
+    button.classList.add('button-triggered');
+
+    setTimeout(() => {
+      button.classList.remove('button-triggered');
+    },100);
+
+
+
+    
+
 
     //used to track state of calculator which avoids appending of a new number to the current result
     if(calcState) {
       displayCalc.innerText = button.innerText;
       firstNumber = displayCalc.innerText;
       calcState = false;
+      buttonPressed = false;
     } else { 
       //checks if calculator already has an operator, if not it wont move to next number
       if(!operator) {
@@ -33,9 +46,15 @@ numButtons.forEach((button) => {
 })
 
 
-const operationButtons = document.querySelectorAll('.operation');
+const operationButtons = document.querySelectorAll('.js-operation');
 operationButtons.forEach((button) => {
   button.addEventListener('click', ()=> {
+
+    button.classList.add('button-triggered');
+
+    setTimeout(() => {
+      button.classList.remove('button-triggered');
+    },100);
 
     if (calcState) {
       firstNumber = result;
@@ -47,11 +66,20 @@ operationButtons.forEach((button) => {
     
     operator = button.innerText;
     displayCalc.innerText = '';
+
+
   })
 })
 
-const equalButton = document.querySelector('.equal')
+const equalButton = document.querySelector('.js-equal')
 equalButton.addEventListener('click', () => {
+
+  equalButton.classList.add('button-triggered');
+
+  setTimeout(() => {
+    equalButton.classList.remove('button-triggered');
+  },100);
+  
 
   if (!firstNumber || !operator) {
     displayCalc.innerText = result; 
@@ -59,12 +87,21 @@ equalButton.addEventListener('click', () => {
     equal(firstNumber,secondNumber,operator)
     calcState = true;
   }
+
+  
   
 });
 
 
-const clearButton = document.querySelector('.clear')
+const clearButton = document.querySelector('.js-clear')
 clearButton.addEventListener('click',() => {
+
+  clearButton.classList.add('button-triggered');
+
+  setTimeout(() => {
+    clearButton.classList.remove('button-triggered');
+  },100);
+
   firstNumber = '';
   secondNumber = '';
   operator = '';
@@ -73,8 +110,14 @@ clearButton.addEventListener('click',() => {
   calcState = false;
 })
 
-const decimalButton = document.querySelector('.decimal') 
+const decimalButton = document.querySelector('.js-decimal') 
 decimalButton.addEventListener('click', () => {
+
+  decimalButton.classList.add('button-triggered');
+
+  setTimeout(() => {
+    decimalButton.classList.remove('button-triggered');
+  },100);
 
   if(!operator) {
     if (!firstNumber.includes(".")){
