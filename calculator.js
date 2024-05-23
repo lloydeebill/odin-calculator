@@ -13,11 +13,14 @@ displayCalc.innerText = '';
 const numButtons = document.querySelectorAll('.number');
 numButtons.forEach((button) => {
   button.addEventListener('click',() => {
+
+    //used to track state of calculator which avoids appending of a new number to the current result
     if(calcState) {
       displayCalc.innerText = button.innerText;
       firstNumber = displayCalc.innerText;
       calcState = false;
     } else { 
+      //checks if calculator already has an operator, if not it wont move to next number
       if(!operator) {
         displayCalc.innerText += button.innerText;
         firstNumber = displayCalc.innerText
@@ -29,6 +32,7 @@ numButtons.forEach((button) => {
   })
 })
 
+
 const operationButtons = document.querySelectorAll('.operation');
 operationButtons.forEach((button) => {
   button.addEventListener('click', ()=> {
@@ -37,10 +41,10 @@ operationButtons.forEach((button) => {
       firstNumber = result;
       calcState = false;
     }
-
     if(!firstNumber || firstNumber === 0) {
       firstNumber = '0';
     }  
+    
     operator = button.innerText;
     displayCalc.innerText = '';
   })
@@ -87,7 +91,6 @@ decimalButton.addEventListener('click', () => {
 })
 
 function formatResult(result) {
-
   if (result % 1 !== 0 ) {
     return result.toFixed(3);
   } else {
@@ -110,7 +113,6 @@ function equal(firstNumber,secondNumber,operator) {
       result = divide(firstNumber,secondNumber);
       break;
   } 
-
   displayCalc.innerText = result;
   firstNumber = result;
   secondNumber = '';
