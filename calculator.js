@@ -38,7 +38,7 @@ operationButtons.forEach((button) => {
       calcState = false;
     }
 
-    if(!firstNumber) {
+    if(!firstNumber || firstNumber === 0) {
       firstNumber = '0';
     }  
     operator = button.innerText;
@@ -48,8 +48,14 @@ operationButtons.forEach((button) => {
 
 const equalButton = document.querySelector('.equal')
 equalButton.addEventListener('click', () => {
-  equal(firstNumber,secondNumber,operator)
-  calcState = true;
+
+  if (!firstNumber || !operator) {
+    displayCalc.innerText = result; 
+  } else {
+    equal(firstNumber,secondNumber,operator)
+    calcState = true;
+  }
+  
 });
 
 
@@ -80,31 +86,33 @@ decimalButton.addEventListener('click', () => {
   }
 })
 
+function formatResult(result) {
 
-
-function equal(firstNum,secondNum,operator) {
-
-  if (!secondNum) {
-    secondNum = 0;
+  if (result % 1 !== 0 ) {
+    return result.toFixed(3);
+  } else {
+    return result;
   }
+}
 
+function equal(firstNumber,secondNumber,operator) {
   switch (operator) {
     case "+":
-      add(firstNum,secondNum);
+      result = add(firstNumber,secondNumber);
       break;
     case "-":
-      subtract(firstNum,secondNum);
+      result = subtract(firstNumber,secondNumber);
       break;
     case "x":
-      multiply(firstNum,secondNum);
+      result = multiply(firstNumber,secondNumber);
       break;
     case "÷":
-      divide(firstNum,secondNum);
+      result = divide(firstNumber,secondNumber);
       break;
   } 
 
   displayCalc.innerText = result;
-  firstNumber = result
+  firstNumber = result;
   secondNumber = '';
   operator = '';
 }
@@ -115,7 +123,7 @@ function add(a,b) {
   b = parseFloat(b);
   result = (a + b)
 
-  return result;
+  return formatResult(result);
 }
 
 function subtract(a,b) {
@@ -123,16 +131,16 @@ function subtract(a,b) {
   b = parseFloat(b);
   result = (a - b)
   
-  return result;
+  return formatResult(result);
 }
 
 
 function multiply(a,b) {
   a = parseFloat(a);
   b = parseFloat(b);
-  result = (a * b).toFixed(2);
+  result = (a * b);
   
-  return result;
+  return formatResult(result);
 }
 
 
@@ -145,11 +153,11 @@ function divide(a,b) {
     result = "Error: Zero Division";
   }
   else {
-    result = (a / b)
+    result = (a / b);
     
   }
 
-  return result;
+  return formatResult(result);
 }
 
 
